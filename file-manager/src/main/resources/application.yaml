@@ -1,0 +1,36 @@
+server:
+  port: 8001
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non-contextual-creation: true
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: UNSPECIFIED
+    databasePlatform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddlAuto: update
+      naming:
+        implicitStrategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/file_db
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+  sql:
+    init:
+      mode: always
+      platform: mysql
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB
+      max-request-size: 2MB
